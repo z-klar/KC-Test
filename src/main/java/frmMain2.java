@@ -318,6 +318,7 @@ public class frmMain2 implements ActionListener {
 
                 accessToken = (String) jsobject.get("access_token");
                 txaAccessToken.setText(accessToken);
+                txaRealmRoles.setText(accessToken);
                 refreshToken = (String) jsobject.get("refresh_token");
                 txaRefreshToken.setText(refreshToken);
                 return (res);
@@ -854,6 +855,7 @@ public class frmMain2 implements ActionListener {
         Font txaRealmRolesFont = this.$$$getFont$$$("Courier New", Font.BOLD, 14, txaRealmRoles.getFont());
         if (txaRealmRolesFont != null) txaRealmRoles.setFont(txaRealmRolesFont);
         txaRealmRoles.setForeground(new Color(-10421442));
+        txaRealmRoles.setLineWrap(true);
         txaRealmRoles.setText("");
         scrollPane8.setViewportView(txaRealmRoles);
         final JPanel panel7 = new JPanel();

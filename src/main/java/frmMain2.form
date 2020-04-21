@@ -380,6 +380,7 @@
                                   <background color="-16777216"/>
                                   <font name="Courier New" size="14" style="1"/>
                                   <foreground color="-10421442"/>
+                                  <lineWrap value="true"/>
                                   <text value=""/>
                                 </properties>
                               </component>

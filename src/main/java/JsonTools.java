@@ -48,7 +48,7 @@ public class JsonTools {
         String[] result = s64.split("\\.");
         String sout = "";
         for (int x = 0; x < result.length; x++) {
-            try {
+            try { 
                 String ss = new String(Base64.getDecoder().decode(result[x]));
                 sout += ss;
                 sout += "\n\n";

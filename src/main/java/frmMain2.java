@@ -60,6 +60,11 @@ public class frmMain2 implements ActionListener {
     private JButton btnMap01;
     private JTextField txUserName;
     private JTextField txPassword;
+    private JTextArea txaConvertBase64;
+    private JTextArea txaConvertOpen;
+    private JButton btnOpenToBase64;
+    private JButton btnBase64ToOpen;
+    private JButton btnConvert64ToOpenMulti;
     private JButton btnGetRealms;
     private JList lbRealms;
 
@@ -110,6 +115,14 @@ public class frmMain2 implements ActionListener {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 UsersMouseHandler(e);
+            }
+        });
+        btnBase64ToOpen.addActionListener(e -> JsonTools.Convert64ToBase(txaConvertBase64, txaConvertOpen));
+        btnOpenToBase64.addActionListener(e -> JsonTools.ConvertBaseTo64(txaConvertOpen, txaConvertBase64));
+        btnConvert64ToOpenMulti.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JsonTools.Convert64YoBaseMulti(txaConvertBase64, txaConvertOpen);
             }
         });
     }
@@ -685,7 +698,7 @@ public class frmMain2 implements ActionListener {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-        frame.setSize(1200, 800);
+        frame.setSize(1400, 800);
     }
 
     {
@@ -968,6 +981,38 @@ public class frmMain2 implements ActionListener {
         panel11.add(spacer8, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         final Spacer spacer9 = new Spacer();
         panel11.add(spacer9, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        final JPanel panel12 = new JPanel();
+        panel12.setLayout(new GridLayoutManager(3, 4, new Insets(0, 0, 0, 0), -1, -1));
+        tabbedPane1.addTab("BASE64 Conversion", panel12);
+        final JLabel label16 = new JLabel();
+        label16.setText("BASE64 Text:");
+        panel12.add(label16, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        txaConvertOpen = new JTextArea();
+        txaConvertOpen.setBackground(new Color(-15461356));
+        Font txaConvertOpenFont = this.$$$getFont$$$("Courier New", -1, 14, txaConvertOpen.getFont());
+        if (txaConvertOpenFont != null) txaConvertOpen.setFont(txaConvertOpenFont);
+        txaConvertOpen.setForeground(new Color(-14091252));
+        txaConvertOpen.setLineWrap(true);
+        panel12.add(txaConvertOpen, new GridConstraints(2, 1, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
+        final JLabel label17 = new JLabel();
+        label17.setText("OPEN Text:");
+        panel12.add(label17, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        btnOpenToBase64 = new JButton();
+        btnOpenToBase64.setText("^   OPEN to BASE64");
+        panel12.add(btnOpenToBase64, new GridConstraints(1, 3, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        btnBase64ToOpen = new JButton();
+        btnBase64ToOpen.setText("V  -  BASE64 to OPEN Complete");
+        panel12.add(btnBase64ToOpen, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        txaConvertBase64 = new JTextArea();
+        txaConvertBase64.setBackground(new Color(-15461356));
+        Font txaConvertBase64Font = this.$$$getFont$$$("Courier New", -1, 14, txaConvertBase64.getFont());
+        if (txaConvertBase64Font != null) txaConvertBase64.setFont(txaConvertBase64Font);
+        txaConvertBase64.setForeground(new Color(-787676));
+        txaConvertBase64.setLineWrap(true);
+        panel12.add(txaConvertBase64, new GridConstraints(0, 1, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
+        btnConvert64ToOpenMulti = new JButton();
+        btnConvert64ToOpenMulti.setText("V  -  BASE64 to OPEN MULTIPLE");
+        panel12.add(btnConvert64ToOpenMulti, new GridConstraints(1, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 
     /**

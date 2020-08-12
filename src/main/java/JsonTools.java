@@ -1,9 +1,17 @@
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.JWTVerifier;
+import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.exceptions.JWTDecodeException;
+import com.auth0.jwt.interfaces.Claim;
+import com.auth0.jwt.interfaces.DecodedJWT;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 
 import javax.swing.*;
 import java.util.Base64;
+import java.util.Date;
+import java.util.Map;
 
 public class JsonTools {
 
@@ -60,4 +68,44 @@ public class JsonTools {
         }
         dst.setText(sout);
     }
+
+    public static void ProcessJwt(JTextArea src, JTextArea dst) {
+        String stoken = src.getText();
+
+        try {
+            /*
+            Algorithm algorithm = Algorithm.HMAC256("e63164b7-1a2a-4dfc-933d-c100e82a0ada");
+            JWTVerifier verifier = JWT.require(algorithm)
+                    .withIssuer("auth0")
+                    .build(); //Reusable verifier instance
+
+            DecodedJWT jwt = verifier.verify(stoken);
+             */
+            DecodedJWT jwt = JWT.decode(stoken);
+
+            String out = "";
+            String subj;
+            subj = "Algorithm:  " + jwt.getAlgorithm();
+            out += subj;  out += "\n";
+            subj = "Subject:    " + jwt.getSubject();
+            out += subj;  out += "\n";
+            subj = "Issuer:     " + jwt.getIssuer();
+            out += subj;  out += "\n";
+            subj = "Expires:    " + jwt.getExpiresAt().toString();
+            out += subj;  out += "\n";
+            subj = "Issued at:  " + jwt.getIssuedAt().toString();
+            out += subj;  out += "\n";
+
+            Map<String, Claim> claims = jwt.getClaims();    //Key is the Claim name
+            Claim claim = claims.get("preferred_username");
+            out += "UserName:   " + claim.asString() + "\n";
+
+            dst.setText(out);
+        } catch (Exception ex){
+            //Invalid token
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+
+    }
+
 }

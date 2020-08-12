@@ -4,6 +4,8 @@ public class KeycloakTools {
 
     private String KcBaseUrl;
     private String KcAdminTokenUrl;
+    private String KcCfgUserName;
+    private String KcCfgPassword;
 
     /*###########################################################################
 
